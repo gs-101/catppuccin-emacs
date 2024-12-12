@@ -1525,7 +1525,14 @@ FLAVOR defaults to the value of `catppuccin-flavor'."
             ,(funcall get-func (alist-get 'ctp-teal colors))
             ,(funcall get-func
                (alist-get (if (eq catppuccin-flavor 'latte)
-                            'ctp-surface2  'ctp-subtext1) colors))))))))
+                            'ctp-surface2  'ctp-subtext1) colors)))))))
+
+  ;; Checks if it's possible to set
+  ;; an empty language string to `org-src-block-faces', which applies changes
+  ;; to all languages. This was only introduced in Org 9.7.
+  (when (and (version> emacs-version "29") (version>= (org-version) "9.7"))
+    (add-to-list 'org-src-block-faces (list "" (list :foreground (catppuccin-color 'green))))
+    (custom-theme-set-faces 'catppuccin '((org-block :foreground (catppuccin-color 'text))))))
 
 ;;;###autoload
 (when load-file-name
