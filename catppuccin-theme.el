@@ -1500,7 +1500,11 @@ FLAVOR defaults to the value of `catppuccin-flavor'."
             ,(funcall get-func (alist-get 'ctp-teal colors))
             ,(funcall get-func
                (alist-get (if (eq catppuccin-flavor 'latte)
-                            'ctp-surface2  'ctp-subtext1) colors))))))))
+                            'ctp-surface2  'ctp-subtext1) colors)))))))
+
+  (funcall #'prism-set-colors
+    :colors (mapcar #'catppuccin-get-color
+              '(red peach yellow green sapphire lavender mauve))))
 
 ;;;###autoload
 (when load-file-name
